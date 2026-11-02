@@ -1,0 +1,14 @@
+[project]
+name = "blitzkugel"
+version = "0.1.0"
+description = "Blitzkugelverfahren nach DIN EN 62305-3 für STEP-Modelle"
+requires-python = ">=3.11"
+
+[project.scripts]
+blitzkugel = "blitzkugel.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["blitzkugel*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

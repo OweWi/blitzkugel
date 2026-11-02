@@ -1,0 +1,12 @@
+# Blitzkugel – Laufzeitabhängigkeiten (Python 3.11+)
+numpy>=1.26
+scipy>=1.11
+PyQt6>=6.6
+pyvista>=0.43
+pyvistaqt>=0.11
+# STEP-Import (OpenCascade-Bindings aus CadQuery, per pip installierbar)
+cadquery-ocp>=7.7
+# Schnelle Abstandsberechnung. Unter macOS benötigen 0.19+ `brew install libusb`.
+# Ohne open3d wird eine (langsame) NumPy-Berechnung verwendet.
+open3d>=0.18
+pytest>=7
