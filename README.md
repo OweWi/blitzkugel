@@ -7,15 +7,39 @@ in einer 3D-Ansicht markiert und lassen sich als PNG und CSV exportieren.
 
 ## Installation
 
+Empfohlen ist **Python 3.11** (oder 3.12). Für neuere Python-Versionen gibt es
+`open3d` bzw. `cadquery-ocp` unter Umständen noch nicht als fertiges Paket; dann
+scheitert `pip install`.
+
 ### pip (empfohlen)
+
+macOS / Linux:
 
 ```bash
 python3.11 -m venv .venv
-source .venv/bin/activate          # Windows: .venv\Scripts\activate
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+Windows (PowerShell oder Eingabeaufforderung):
+
+```bat
+py -3.11 -m venv .venv
+.venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
 `cadquery-ocp` (OpenCascade) wird hier über pip installiert. Dafür ist kein conda nötig.
+
+**Windows:**
+- Python von python.org installieren; der Launcher `py` ist dann vorhanden.
+  `py --list` zeigt die installierten Versionen.
+- Blockiert PowerShell das Aktivierungsskript, einmalig
+  `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` ausführen oder die
+  Eingabeaufforderung (`cmd`) verwenden.
+- Die 3D-Ansicht benötigt OpenGL 3.2. In Remote-Desktop-Sitzungen oder virtuellen
+  Maschinen ohne Grafiktreiber bleibt sie unter Umständen schwarz.
+- VS Code erkennt das `.venv` im Projektordner automatisch als Interpreter.
 
 **macOS:**
 - open3d ab 0.19 benötigt `brew install libusb`. Ohne lauffähiges open3d rechnet
@@ -73,7 +97,8 @@ Tests: `python -m pytest`
 5. **Export**:
    - PNG der aktuellen Ansicht oder aller sechs Standardansichten, in wählbarer
      Auflösung, mit Legende und Kugeldaten
-   - CSV mit `x_m;y_m;z_m;richtung;dreieck_id`, Trennzeichen `;`, Dezimalpunkt
+   - CSV mit `x_m;y_m;z_m;richtung;dreieck_id`, Trennzeichen `;`, wahlweise mit
+     Dezimalkomma (Standard, für deutsches Excel) oder Dezimalpunkt
 
 ## Verfahren
 

@@ -131,6 +131,13 @@ HELP_TEXTS: dict[str, str] = {
         "Maus in der 3D-Ansicht: linke Taste drehen, Mausrad oder rechte Taste zoomen, "
         "Umschalt + linke Taste verschieben."
     ),
+    "decimal_comma": (
+        "<b>CSV mit Dezimalkomma</b><br>Schreibt die Koordinaten als <i>12,3456</i> statt "
+        "<i>12.3456</i>. Ein deutsch eingestelltes Excel liest die Datei dann direkt richtig ein; "
+        "mit Dezimalpunkt würde es die Zahlen als Tausender oder Datum deuten.<br>"
+        "Ausschalten für Programme, die einen Dezimalpunkt erwarten (Python, CAD, englisches "
+        "Excel). Trennzeichen ist in beiden Fällen das Semikolon."
+    ),
     "resolution": (
         "<b>Auflösung</b><br>Breite × Höhe der exportierten PNG-Bilder in Pixeln, unabhängig von der "
         "Fenstergröße. Legende und Kugeldaten werden mit exportiert, wenn sie eingeblendet sind."

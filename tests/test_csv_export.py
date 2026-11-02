@@ -21,3 +21,13 @@ def test_csv_roundtrip(tmp_path: Path) -> None:
     assert len(rows) == n + 1
     assert {r[3] for r in rows[1:]} == {"0°", "90°"}
     assert all(float(r[2]) >= 10.0 - 1e-3 for r in rows[1:])
+
+
+def test_csv_decimal_comma(tmp_path: Path) -> None:
+    res = roll_directions(make_box(-5, -5, 0, 5, 5, 10), SphereParams(20.0, 1.0), [0.0])
+    out = tmp_path / "punkte.csv"
+    export_strike_points_csv(res, out, decimal_comma=True)
+    with out.open(encoding="utf-8-sig") as fh:
+        rows = list(csv.reader(fh, delimiter=";"))
+    assert all("," in r[0] and "." not in r[0] for r in rows[1:])
+    assert all(float(r[2].replace(",", ".")) >= 10.0 - 1e-3 for r in rows[1:])

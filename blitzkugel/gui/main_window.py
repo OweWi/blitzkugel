@@ -410,6 +410,9 @@ class MainWindow(QMainWindow):
         self.btn_png.clicked.connect(self.export_current_png)
         self.btn_png_all = QPushButton("Alle Standardansichten als PNG …")
         self.btn_png_all.clicked.connect(self.export_all_png)
+        self.chk_decimal_comma = QCheckBox("CSV mit Dezimalkomma (deutsches Excel)")
+        self.chk_decimal_comma.setChecked(True)
+        lay.addLayout(with_help(self.chk_decimal_comma, "decimal_comma"))
         self.btn_csv = QPushButton("Einschlagpunkte als CSV …")
         self.btn_csv.clicked.connect(self.export_csv)
         for b in (self.btn_png, self.btn_png_all, self.btn_csv):
@@ -775,7 +778,8 @@ class MainWindow(QMainWindow):
         if not path:
             return
         try:
-            n = export_strike_points_csv(self.scene.result, path)
+            n = export_strike_points_csv(self.scene.result, path,
+                                          decimal_comma=self.chk_decimal_comma.isChecked())
         except OSError as exc:
             QMessageBox.critical(self, "Export fehlgeschlagen", str(exc))
             return
